@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="http://backbonejs.org/backbone-min.js"></script>
+		<link rel="Stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	</head>
+	<style>
+		.chat {
+			border: 5px solid #eee;
+			margin: 10px;
+			padding: 10px;
+			height: 350px;
+		}
+		
+		.chat .image {
+			max-height: 200px;
+		}
+	
+		.chat .title {
+			font-weight: bold;
+			padding-bottom: 10px;
+		}
+		
+		.chat .description {
+			padding-bottom: 10px;
+		}
+		
+		.chat .members {
+			padding-top: 5px;
+		}
+	</style>
+	<script>
+		var ChatCollection = new Backbone.Collection([
+		  {title: "Tim", description: 'Hello', image: 'test.jpg', members: 5},
+		  {title: "Tim", description: 'Hello', image: 'test.jpg', members: 5},
+		  {title: "Tim", description: 'Hello', image: 'test.jpg', members: 5},
+		  {title: "Tim", description: 'Hello', image: 'test.jpg', members: 5}
+		]);
+	
+		var ChatlistView = Backbone.View.extend({
+		  el: '#connect',
+		  initialize: function() {
+		     this.template = _.template($('#tpl_connect_item').html());
+		  },
+		  render : function() {
+		      // the persons will be "visible" in your template
+		     this.$el.html(this.template({ persons: this.coll.toJSON() }));
+		     return this;
+		  }
+		});
+	</script>
+	<body>
+		<script id="tpl_connect_item" type="text/x-template">
+			<div class="col-xs-6 col-sm-4">
+		    	<div class="chat">
+			    	<img src="http://warnowtunnel.de/wp-content/plugins/special-recent-posts/images/no-thumb.png" class="image">
+			    	<div class="title">Chat title</div>
+			    	<div class="description">Chat description will be here. Just type info about chat here</div>
+			    	<div class="productprice"><div class="pull-right"><a href="#" class="btn btn-success btn-sm" role="button">JOIN</a></div><div class="members"><span class="glyphicon glyphicon-user"></span> 500</div></div>
+		    	</div>
+		    </div>
+		</script>
+	
+		<div id="connect" class="container fluid">
+			
+		</div>
+	</body>
+</html>
